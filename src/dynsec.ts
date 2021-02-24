@@ -1,5 +1,4 @@
 
-import {EventEmitter} from "events"
 import {connect, MqttClient} from "mqtt"
 import {AddRoleACLRequest, CreateClientRequest, GetClientResponse, ListClientsResponse, ListGroupsResponse, ListRequest, ListRolesResponse, RemoveRoleACLRequest} from "./command_types"
 
@@ -34,17 +33,13 @@ interface PendingCommand {
 
 type DefaultAclType = "publishClientSend" | "publishClientReceive" | "subscribe" | "unsubscribe"
 
-export class MosquittoDynsec extends EventEmitter {
+export class MosquittoDynsec {
 
   private mqtt?: MqttClient
   private pendingCommands: {[commandName: string]: PendingCommand} = {}
   private apiVersion = "v1"
 
   timeoutSeconds = 2
-
-  constructor() {
-    super()
-  }
 
   private onCommandResponse(topic: string, payload: ResponseTopicPayload) {
 
