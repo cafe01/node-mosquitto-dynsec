@@ -1,0 +1,28 @@
+{
+  "name": "mosquitto-dynsec",
+  "version": "0.0.1",
+  "description": "Manage Mosquitto Dynamic Security Plugin via MQTT",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "test": "mocha"
+  },
+  "keywords": [
+    "mosquitto",
+    "dynsec"
+  ],
+  "author": "Carlos Fernando Avila Gratz",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/events": "^3.0.0",
+    "eslint": "^7.20.0",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "chai": "^4.3.0",
+    "events": "^3.2.0",
+    "mocha": "^8.3.0",
+    "mqtt": "^4.2.6"
+  }
+}
