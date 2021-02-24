@@ -1,6 +1,6 @@
 {
   "name": "mosquitto-dynsec",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Manage Mosquitto Dynamic Security Plugin via MQTT",
   "main": "index.js",
   "scripts": {
