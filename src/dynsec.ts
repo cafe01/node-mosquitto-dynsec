@@ -32,6 +32,8 @@ interface PendingCommand {
   reject: (error?: string) => void;
 }
 
+type DefaultAclType = "publishClientSend" | "publishClientReceive" | "subscribe" | "unsubscribe"
+
 export class MosquittoDynsec extends EventEmitter {
 
   private mqtt?: MqttClient
@@ -133,6 +135,15 @@ export class MosquittoDynsec extends EventEmitter {
     })
 
     return Promise.race<Promise<object | void>>([commandPromise, timeoutPromise])
+  }
+
+  async getDefaultACLAccess(acltype: DefaultAclType) {
+    const res = await (this.sendCommand("getDefaultACLAccess", {acltype}) as Promise<any>)
+    return res.acls
+  }
+
+  setDefaultACLAccess(acltype: DefaultAclType, allow: boolean) {
+    return this.sendCommand("setDefaultACLAccess", {acltype, access: allow ? 'allow' : 'deny'}) as Promise<void>
   }
 
   listClients(params: ListRequest = {}) {

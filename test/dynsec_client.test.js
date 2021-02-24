@@ -201,3 +201,14 @@ describe("group commands", () => {
   })
 
 })
+
+
+describe("acl commands", () => {
+
+
+  it("getDefaultACLAccess", async function() {
+    const res = await dynsec.getDefaultACLAccess()
+    expect(res).to.have.lengthOf(4)
+  })
+
+})
