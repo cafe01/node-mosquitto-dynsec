@@ -7,6 +7,11 @@
     "dev": "tsc -w",
     "test": "mocha"
   },
+  "homepage": "https://github.com/cafe01/node-mosquitto-dynsec#node-mosquitto-dynsec",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cafe01/node-mosquitto-dynsec.git"
+  },
   "keywords": [
     "mosquitto",
     "dynsec"
