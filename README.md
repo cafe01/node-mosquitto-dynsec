@@ -3,6 +3,23 @@
 
 This is a NodeJS module for managing eclipse-mosquitto Dynamic Security plugin.
 
+```js
+import {MosquittoDynsec} from "mosquitto-dynsec"
+const dynsec = new MosquittoDynsec()
+
+try {
+  await dynsec.connect({
+    hostname: "mqtt.example.com",
+    username: "foo",
+    password: "bar"
+  })
+} catch(e) {
+  console.error("Connect error:", e)
+}
+
+const res = await dynsec.createClient({ username: "user1", password: "pass" })
+```
+
 
 
 # Implemented commands

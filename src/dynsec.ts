@@ -32,6 +32,10 @@ interface PendingCommand {
 }
 
 type DefaultAclType = "publishClientSend" | "publishClientReceive" | "subscribe" | "unsubscribe"
+interface DefaultACLEntry {
+  acltype: DefaultAclType;
+  allow: boolean;
+}
 
 export class MosquittoDynsec {
 
@@ -49,7 +53,7 @@ export class MosquittoDynsec {
     // resolve pending promises
     payload.responses.forEach((res: CommandResponse) => {
 
-      console.log("Got command response: ", res)
+      // console.log("Got command response: ", res)
       const pendingCommand = this.pendingCommands[res.command]
       if (!pendingCommand)
         return console.warn(`Received response for unsent command '${res.command}'`, res.data)
@@ -91,7 +95,7 @@ export class MosquittoDynsec {
 
       mqtt.on("error", () => {reject()})
       mqtt.on("connect", () => {
-        console.log("on-connect")
+        // console.log("on-connect")
         mqtt.subscribe(responseTopic)
         this.mqtt = mqtt
         resolve()
@@ -137,8 +141,8 @@ export class MosquittoDynsec {
     return res.acls
   }
 
-  setDefaultACLAccess(acltype: DefaultAclType, allow: boolean) {
-    return this.sendCommand("setDefaultACLAccess", {acltype, access: allow ? 'allow' : 'deny'}) as Promise<void>
+  setDefaultACLAccess(acls: DefaultACLEntry[]) {
+    return this.sendCommand("setDefaultACLAccess", {acls}) as Promise<void>
   }
 
   listClients(params: ListRequest = {}) {
@@ -246,8 +250,8 @@ export class MosquittoDynsec {
     return this.sendCommand("removeGroupClient", {groupname, username}) as Promise<void>
   }
 
-  addGroupRole(groupname: string, rolename: string) {
-    return this.sendCommand("addGroupRole", {groupname, rolename}) as Promise<void>
+  addGroupRole(groupname: string, rolename: string, priority?: number) {
+    return this.sendCommand("addGroupRole", {groupname, rolename, priority}) as Promise<void>
   }
 
   removeGroupRole(groupname: string, rolename: string) {

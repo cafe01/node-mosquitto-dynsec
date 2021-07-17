@@ -1,9 +1,16 @@
 {
   "name": "mosquitto-dynsec",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Manage Mosquitto Dynamic Security Plugin via MQTT",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "README.md",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
   "scripts": {
+    "build": "tsc",
     "dev": "tsc -w",
     "test": "mocha"
   },
