@@ -1,6 +1,6 @@
 
-import {connect, MqttClient} from "mqtt"
-import {AddRoleACLRequest, CreateClientRequest, GetClientResponse, ListClientsResponse, ListGroupsResponse, ListRequest, ListRolesResponse, RemoveRoleACLRequest} from "./command_types"
+import {connect, MqttClient} from "mqtt";
+import {AddRoleACLRequest, CreateClientRequest, GetClientResponse, ListClientsResponse, ListGroupsResponse, ListRequest, ListRolesResponse, RemoveRoleACLRequest} from "./command_types";
 
 
 export interface ConnectOptions {
@@ -69,6 +69,10 @@ export class MosquittoDynsec {
       }
 
     })
+  }
+
+  setConnection(mqtt: MqttClient) {
+    this.mqtt = mqtt
   }
 
   connect(options: ConnectOptions = {}): Promise<void> {
