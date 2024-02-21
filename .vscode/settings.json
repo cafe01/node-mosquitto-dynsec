@@ -5,8 +5,8 @@
   "editor.trimAutoWhitespace": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll.eslint": true
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
 
   "files.exclude": {
@@ -14,8 +14,7 @@
     "**/.git": true,
     "**/.hg": true,
     "**/.svn": true,
-    "**/CVS": true,
-    "dist": true,
+    "**/CVS": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
